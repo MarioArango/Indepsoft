@@ -21,9 +21,6 @@ const storage = multer.diskStorage({
     },
 });
 
-//SETTINGS
-app.set('port', process.env.PORT || 3000);
-
 //CORS
 app.use(cors({ exposedHeaders: ["auth-token"] }));
 app.use((req, res, next) => {
@@ -60,7 +57,11 @@ app.use(
     }).single("image")
 );
 
+//SETTINGS
+app.set('port', process.env.PORT || 4000);
+
 //ROUTES
+//app.use((req, res) => res.status(404).send('Page not found'));
 app.use('/api/trabajador', trabajadoresRoutes);
 app.use('/api/solicitante', solicitantesRoutes);
 

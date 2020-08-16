@@ -1,5 +1,4 @@
-const { Schema, model } = require('mongoose');  
-const bcrypt = require('bcryptjs');   
+const { Schema, model } = require('mongoose');
 
 const solicitanteSchema = new Schema({
     nombre: {
@@ -51,25 +50,5 @@ const solicitanteSchema = new Schema({
         required: true
     }
 });
-
-solicitanteSchema.methods.encriptar = async function (password) {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const passwordEncriptado = await bcrypt.hash(password, salt);
-        return passwordEncriptado;
-    } catch (error) {
-        console.log(`Erro de encriptación`);
-    }
-}
-
-solicitanteSchema.methods.comparar = async function (password, passwordEncriptado) {
-    try {
-        const verf = await bcrypt.compare(password, passwordEncriptado);
-        return verf;
-    } catch (error) {
-        console.log(`Erro de verificacion en la encriptación`);
-    }
-}
-
 
 module.exports = model('Solicitante', solicitanteSchema);

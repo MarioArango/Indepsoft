@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const trabajadorController = require('../controllers/trabajadoresController');
+const { registrar, ingresar, publicar } = require('../controllers/trabajadoresController');
 
-const route = Router();
+const router = Router();
 
-route.post('/registrar', trabajadorController.registrar);
-route.post('/ingresar', trabajadorController.ingresar);
-route.post('/publicar', trabajadorController.publicar);
+router.post('/registrar', registrar);
+router.post('/ingresar', ingresar);
+router.post('/publicar/:_id', publicar);
 
-module.exports = route;
+module.exports = router;
